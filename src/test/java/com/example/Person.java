@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.Collection;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -49,4 +50,15 @@ public class Person {
 			inverseJoinColumns = @JoinColumn(name = "parentId")
 	)
 	private Collection<Person> parents;
+
+	public String toString() {
+		return this.getName();
+	}
+
+	public boolean equals(Object o) {
+		if ( o instanceof Person ) {
+			return Objects.equals( this.name, ( (Person) o ).getName() );
+		}
+		return false;
+	}
 }

@@ -25,8 +25,7 @@ import org.springframework.transaction.jta.JtaTransactionManager;
 
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories(basePackages = { "com.example" })
-public class SpringOgmMongoEmbeddedIT extends AbstractMongoDBTest{
-
+public class SpringOgmMongoEmbeddedIT extends AbstractMongoDBTest {
 
 	@PersistenceContext
 	EntityManager em;
@@ -54,8 +53,22 @@ public class SpringOgmMongoEmbeddedIT extends AbstractMongoDBTest{
 
 	@Test
 	@Transactional
+	public void testSaveAndRetrieveEntity() {
+		String personName = "Anonymous Person X";
+		Person person = new Person();
+		person.setName( personName );
+
+		personRepository.saveAndFlush( person );
+
+		Person person2 = personRepository.findOne( personName );
+
+		assertEquals( personName, person2.getName() );
+	}
+
+	@Test
+	@Transactional
 	@Commit
-	public void testfSaveAndRetrieveEntity() {
+	public void testSavePeopleAndRetrieveSpecificPerson() {
 		Person husband = new PeopleCreator().getHusband();
 		personRepository.save( husband );
 
@@ -66,6 +79,6 @@ public class SpringOgmMongoEmbeddedIT extends AbstractMongoDBTest{
 				maybeHusband = p.getSpouse();
 			}
 		}
-		assertEquals( husband.getName(), maybeHusband.getName() );
+		assertEquals( husband, maybeHusband );
 	}
 }
