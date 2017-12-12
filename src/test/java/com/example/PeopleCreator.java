@@ -8,6 +8,8 @@ import lombok.Data;
 public class PeopleCreator {
 
 	private ArrayList<Person> people;
+	private Person husband;
+	private Person mary;
 
 	public PeopleCreator() {
 		init();
@@ -64,5 +66,6 @@ public class PeopleCreator {
 		people.add( mary );
 
 		this.people = people;
+		this.husband = husband;
 	}
 }
