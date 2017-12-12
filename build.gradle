@@ -27,4 +27,7 @@ dependencies {
 
 	testCompile 'org.hibernate.ogm:hibernate-ogm-core:5.2.0.Beta1'
 	testCompile 'org.hibernate.ogm:hibernate-ogm-mongodb:5.2.0.Beta1'
+
+	testCompile group: 'de.flapdoodle.embed', name: 'de.flapdoodle.embed.mongo', version: '2.0.0'
+
 }

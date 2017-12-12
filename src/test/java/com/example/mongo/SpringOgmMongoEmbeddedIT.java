@@ -23,11 +23,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.jta.JtaTransactionManager;
 
-import static junit.framework.TestCase.assertEquals;
-
 @RunWith(SpringRunner.class)
 @EnableJpaRepositories(basePackages = { "com.example" })
-public class SpringOgmMongoEmbeddedIT {
+public class SpringOgmMongoEmbeddedIT extends AbstractMongoDBTest{
+
 
 	@PersistenceContext
 	EntityManager em;
@@ -41,7 +40,7 @@ public class SpringOgmMongoEmbeddedIT {
 		@Bean
 		LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 			LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
-			bean.setPersistenceUnitName( "mongodb-local" );
+			bean.setPersistenceUnitName( "mongodb-embedded" );
 			return bean;
 		}
 
@@ -56,7 +55,7 @@ public class SpringOgmMongoEmbeddedIT {
 	@Test
 	@Transactional
 	@Commit
-	public void saveAndRetrieveEntity() {
+	public void testfSaveAndRetrieveEntity() {
 		Person husband = new PeopleCreator().getHusband();
 		personRepository.save( husband );
 

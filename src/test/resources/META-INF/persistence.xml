@@ -3,7 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
              version="2.0">
-    <persistence-unit name="mongodb-local" transaction-type="JTA">
+    <persistence-unit name="mongodb-embedded" transaction-type="JTA">
         <!-- Use the Hibernate OGM provider: configuration will be transparent -->
         <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
         <class>com.example.Person</class>
@@ -13,6 +13,7 @@
             <property name="hibernate.ogm.datastore.create_database" value="true"/>
             <property name="hibernate.ogm.datastore.provider" value="mongodb"/>
             <property name="hibernate.ogm.datastore.host" value="localhost"/>
+            <property name="hibernate.ogm.datastore.port" value="12345"/>
             <property name="hibernate.ogm.datastore.database" value="mongodb3"/>
         </properties>
     </persistence-unit>
